@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/week3/widgets/actions/bla_btn.dart';
+import 'package:my_app/week3/widgets/inputs/ride_preferences_form.dart';
 
 void main() {
   runApp(MaterialApp(
     home: TestScreen(
-      testWidget: BlaButton(
-          text: "Contact Volodia",
-          onPressed: () => print("Blue button clicked"),
-          backgroundColor: Colors.blue,
-          textColor: Colors.white,
-          icon: Icons.message, // Different icon
+      testWidget: SearchFormScreen() // Different icon
       )
     ),
-  ));
+  );
 }
 
 // Test screen to display any widget
