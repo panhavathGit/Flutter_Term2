@@ -14,7 +14,7 @@ class BlaButton extends StatelessWidget {
     this.backgroundColor = Colors.transparent, 
     this.textColor = Colors.blue, 
     this.icon = Icons.chat_bubble_outline, 
-  });
+  }); 	
 
   @override
   Widget build(BuildContext context) {

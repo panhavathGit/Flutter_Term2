@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: SearchFormScreen(),
-  ));
-}
+import 'package:intl/intl.dart'; // Import intl package
+import 'package:my_app/week3/widgets/display/bla_divider.dart';
+import 'package:my_app/week3/widgets/inputs/input_field.dart';
+import 'package:my_app/week3/screens/test_screen/location_detail_test_screen.dart';
 
 class SearchFormScreen extends StatefulWidget {
   @override
@@ -12,7 +10,7 @@ class SearchFormScreen extends StatefulWidget {
 }
 
 class _SearchFormScreenState extends State<SearchFormScreen> {
-  String? _selectedLocation = "Toulouse";
+  // String? _selectedLocation = "Toulouse";
   DateTime? _selectedDate;
   int _numTravelers = 1;
 
@@ -41,45 +39,43 @@ class _SearchFormScreenState extends State<SearchFormScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Location Selection
-            _buildLocationOption("Toulouse"),
-            _buildLocationOption("Bordeaux, France"),
+            LocationOptionBtn(
+              location: "Toulouse",
+            ),
+            LocationOptionBtn(
+              location: "Bordeaux, France",
+            ),
 
-            // Date Picker
+            //Date picker
             GestureDetector(
               onTap: _pickDate,
-              child: _buildInputField(
+              child: InputField(
                 icon: Icons.calendar_today,
                 text: _selectedDate == null
                     ? "Select Date"
-                    : "${_selectedDate!.toLocal()}".split(' ')[0],
+                    : DateFormat('yyyy-MM-dd')
+                        .format(_selectedDate!), // Simplified formatting
               ),
             ),
-
-            // Traveler Count
-            _buildInputField(
+            BlaDivider(),
+            //Seat number
+            InputField(
               icon: Icons.person,
               text: "$_numTravelers",
               trailing: Row(
-                mainAxisSize: MainAxisSize.min,
+                //mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
                     icon: Icon(Icons.remove),
                     onPressed: () {
                       if (_numTravelers > 1) {
-                        setState(() {
-                          _numTravelers--;
-                        });
+                        setState(() => _numTravelers--);
                       }
                     },
                   ),
                   IconButton(
                     icon: Icon(Icons.add),
-                    onPressed: () {
-                      setState(() {
-                        _numTravelers++;
-                      });
-                    },
+                    onPressed: () => setState(() => _numTravelers++),
                   ),
                 ],
               ),
@@ -87,11 +83,8 @@ class _SearchFormScreenState extends State<SearchFormScreen> {
 
             SizedBox(height: 16),
 
-            // Search Button
             ElevatedButton(
-              onPressed: () {
-                print("Search button clicked");
-              },
+              onPressed: () => print("Search button clicked"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 minimumSize: Size(double.infinity, 50),
@@ -109,35 +102,53 @@ class _SearchFormScreenState extends State<SearchFormScreen> {
       ),
     );
   }
-  
-  Widget _buildLocationOption(String location) {
-    return RadioListTile<String>(
-      title: Text(location),
-      value: location,
-      groupValue: _selectedLocation,
-      onChanged: (String? value) {
-        setState(() {
-          _selectedLocation = value;
-        });
-      },
-    );
-  }
+}
 
-  Widget _buildInputField({required IconData icon, required String text, Widget? trailing}) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      margin: EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.grey),
-          SizedBox(width: 12),
-          Expanded(child: Text(text, style: TextStyle(fontSize: 16))),
-          if (trailing != null) trailing,
-        ],
+class LocationOptionBtn extends StatelessWidget {
+  final String location;
+  final IconData icon;
+  final Color color;
+
+  const LocationOptionBtn({
+    required this.location,
+    this.icon = Icons.location_on, // Default icon
+    this.color = Colors.white, // Default color
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LocationDetailScreen(location: location),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          minimumSize: Size(double.infinity, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start, // Align items to the left
+          children: [
+            Icon(icon, color: Colors.black),
+            SizedBox(width: 12), // Space between icon and text
+            Expanded(
+              child: Text(
+                location,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
