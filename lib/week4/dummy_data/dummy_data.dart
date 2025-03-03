@@ -160,7 +160,7 @@ List<Ride> fakeRides = List.generate(50, (index) {
 
   // Select a random driver
   User driver = fakeUsers[random.nextInt(fakeUsers.length)];
-
+  
   // Random ride details
   DateTime departureTime = DateTime.now()
       .add(Duration(days: random.nextInt(10), hours: random.nextInt(24)));
