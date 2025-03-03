@@ -57,7 +57,7 @@ class _SearchFormScreenState extends State<SearchFormScreen> {
                         .format(_selectedDate!), // Simplified formatting
               ),
             ),
-            BlaDivider(),
+               
             //Seat number
             InputField(
               icon: Icons.person,
