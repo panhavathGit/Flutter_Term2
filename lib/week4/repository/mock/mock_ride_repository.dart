@@ -6,13 +6,13 @@ import 'package:my_app/week4/model/ride_pref/ride_pref.dart';
 import 'package:my_app/week4/service/rides_service.dart';
 
 class MockRideRepository extends RidesRepository {
-  final List<Ride> mockRides = [
+  final List<Ride> mockRides = [  
     Ride(
         departureLocation:
             Location(name: "Battambang", country: Country.cambodia),
-        departureDate: DateTime(2025, 03, 06, 05, 30),
+        departureDate: DateTime.now(),
         arrivalLocation: Location(name: "SiemReap", country: Country.cambodia),
-        arrivalDateTime: DateTime(2025, 03, 06, 05, 30).add(Duration(hours: 2)),
+        arrivalDateTime: DateTime.now().add(Duration(hours: 2)),
         driver: User(firstName: "Kannika"),
         availableSeats: 2,
         pricePerSeat: 17.0,
@@ -20,9 +20,9 @@ class MockRideRepository extends RidesRepository {
     Ride(
         departureLocation:
             Location(name: "Battambang", country: Country.cambodia),
-        departureDate: DateTime(2025, 03, 06, 20, 00),
+        departureDate: DateTime.now(),
         arrivalLocation: Location(name: "SiemReap", country: Country.cambodia),
-        arrivalDateTime: DateTime(2025, 03, 06, 20, 00).add(Duration(hours: 2)),
+        arrivalDateTime: DateTime.now().add(Duration(hours: 2)),
         driver: User(firstName: "Chhaylim"),
         availableSeats: 0,
         pricePerSeat: 17.0,
@@ -30,9 +30,9 @@ class MockRideRepository extends RidesRepository {
     Ride(
         departureLocation:
             Location(name: "Battambang", country: Country.cambodia),
-        departureDate: DateTime(2025, 03, 06, 05, 00),
+        departureDate: DateTime.now(),
         arrivalLocation: Location(name: "SiemReap", country: Country.cambodia),
-        arrivalDateTime: DateTime(2025, 03, 06, 05, 00).add(Duration(hours: 3)),
+        arrivalDateTime: DateTime.now().add(Duration(hours: 3)),
         driver: User(firstName: "Mengtech"),
         availableSeats: 1,
         pricePerSeat: 17.0,
@@ -40,9 +40,9 @@ class MockRideRepository extends RidesRepository {
     Ride(
         departureLocation:
             Location(name: "Battambang", country: Country.cambodia),
-        departureDate: DateTime(2025, 03, 06, 20, 00),
+        departureDate: DateTime.now(),
         arrivalLocation: Location(name: "SiemReap", country: Country.cambodia),
-        arrivalDateTime: DateTime(2025, 03, 06, 20, 00).add(Duration(hours: 2)),
+        arrivalDateTime: DateTime.now().add(Duration(hours: 2)),
         driver: User(firstName: "Limhao"),
         availableSeats: 2,
         pricePerSeat: 17.0,
@@ -50,9 +50,9 @@ class MockRideRepository extends RidesRepository {
     Ride(
         departureLocation:
             Location(name: "Battambang", country: Country.cambodia),
-        departureDate: DateTime(2025, 03, 06, 05, 00),
+        departureDate: DateTime.now(),
         arrivalLocation: Location(name: "SiemReap", country: Country.cambodia),
-        arrivalDateTime: DateTime(2025, 03, 06, 05, 00).add(Duration(hours: 3)),
+        arrivalDateTime: DateTime.now().add(Duration(hours: 3)),
         driver: User(firstName: "Sovanda"),
         availableSeats: 1,
         pricePerSeat: 17.0,
